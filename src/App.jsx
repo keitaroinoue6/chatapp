@@ -1,25 +1,28 @@
 import React from 'react';
-import './App.css';
-import defaultDateset from "./dataset"; //defauleDatesetを読み込む
+import defaultDataset from "./dataset"; //defauleDatesetを読み込む
+import './assets/styles/style.css' 
 
 export class App extends React.Component {
   constructor(props) { //初期のstateの状態の定義
     super(props);
     this.state ={
-      answer: [],
+      answers: [],
       chats: [],
       currentId: "init",
-      dateset: defaultDateset,
+      dataset: defaultDataset,
       open: false
     }
   }
   render(){
     return (
-      <div>
+      <section className="c-section">
+        <div className="c-box">
 
-      </div>
+        </div>
+      </section>
     );
   }
 }
+
 
 

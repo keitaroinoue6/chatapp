@@ -1,8 +1,9 @@
-.c-section {
+.c-section { 
   position: relative;
   height: 100vh;
   width: 100%;
 }
+/* 画面をブラウザの高さと幅を同じ値に設定する */
 
 .c-box {
   background: #fff;
