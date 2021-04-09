@@ -1,16 +1,15 @@
 import React from "react";
 import { Answer } from "./index";
 
-const AnswersLsit = () => {
+const AnswersList = (props) => {
   return(
-    <div className="c-grid_answer">
-      <AnswersLsit/>
-      <AnswersLsit/>
-      <AnswersLsit/>
-      <AnswersLsit/>
+    <div className="c-grid__answer">
+      {props.answers.map((value, index) => {
+        return <Answer content={value.content} />
+      })}
     </div>
   )
 
 }
 
-export default AnswersLsit
+export default AnswersList

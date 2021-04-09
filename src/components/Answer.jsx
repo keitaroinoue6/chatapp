@@ -6,17 +6,16 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
   },
 }));
 
-const Answer = () => {
-  const classes = useStyles();
+const Answer = (props) => {
+  // const classes = useStyles();
 
   return(
-    <Button variant="contained">Default</Button>
+    <Button variant="contained" color="primary">
+      {props.content}
+    </Button>
   )
 
 }
