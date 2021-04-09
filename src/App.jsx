@@ -1,7 +1,7 @@
 import React from 'react';
 import defaultDataset from "./dataset"; //defauleDatesetを読み込む
 import './assets/styles/style.css'
-import { AnswersList } from "./components/index"; 
+import { AnswersList, Chats } from "./components/index"; 
 
 export class App extends React.Component {
   constructor(props) { //初期のstateの状態の定義
@@ -32,6 +32,7 @@ componentDidMount(){
     return (
       <section className="c-section">
         <div className="c-box">
+          <Chats/>
           <AnswersList answers={this.state.answers} />
         </div>
       </section>
