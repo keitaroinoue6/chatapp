@@ -63,7 +63,7 @@ export class App extends React.Component {
 
 componentDidMount(){
   const initAnswer = "";
-  this.selectAnswer()
+  this.selectAnswer(initAnswer, this.state.currentId)
 }
 
 
