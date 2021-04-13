@@ -33,10 +33,14 @@ export class App extends React.Component {
   selectAnswer = (selectedAnswer, nextQuestionId) => {
     switch (true) {
       case (nextQuestionId === 'init'):
-        this.displayNextQuestion(nextQuestionId)
-        
+        setTimeout(() => this.displayNextQuestion(nextQuestionId), 500);
         break;
-    
+      case (/^https:*/.test(nextQuestionId)):
+        const a = document.createElement('a');
+        a.href = nextQuestionId;
+        a.target = '_blank'; //ブランクを設定すると別タブでリンクを開くようになる
+        a.click();
+        break;
       default:
         const chat = {
           text: selectedAnswer, 
