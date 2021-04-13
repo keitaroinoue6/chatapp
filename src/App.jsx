@@ -2,6 +2,7 @@ import React from 'react';
 import defaultDataset from "./dataset"; //defauleDatesetを読み込む
 import './assets/styles/style.css'
 import { AnswersList, Chats } from "./components/index"; 
+import FormDialog from './components/Forms/FormDialog';
 
 export class App extends React.Component {
   constructor(props) { //初期のstateの状態の定義
@@ -14,6 +15,8 @@ export class App extends React.Component {
       open: false
     }
     this.selectAnswer = this.selectAnswer.bind(this)
+    this.handleClickOpen = this.handleClickOpen.bind(this)
+    this.handleClose = this.handleClose.bind(this)
   }
 
   displayNextQuestion = (nextQuestionId) => {
@@ -62,20 +65,28 @@ export class App extends React.Component {
     }
   }
 
+  handleClickOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
 
 
 
-componentDidMount(){
-  const initAnswer = "";
-  this.selectAnswer(initAnswer, this.state.currentId)
-}
 
-componentDidUpdate(){ // スクロールの設定
-  const scrollArea = document.getElementById('scroll-area')
-  if (scrollArea) {
-    scrollArea.scrollTop = scrollArea.scrollHeight
+  componentDidMount(){
+    const initAnswer = "";
+    this.selectAnswer(initAnswer, this.state.currentId)
   }
-}
+
+  componentDidUpdate(){ // スクロールの設定
+    const scrollArea = document.getElementById('scroll-area')
+    if (scrollArea) {
+      scrollArea.scrollTop = scrollArea.scrollHeight
+    }
+  }
 
   render(){
     return (
@@ -83,6 +94,7 @@ componentDidUpdate(){ // スクロールの設定
         <div className="c-box">
           <Chats chats={this.state.chats}/>
           <AnswersList answers={this.state.answers} select = {this.selectAnswer}/>
+          <FormDialog open={this.state.open} handleClose={this.handleClose} />
         </div>
       </section>
     );
