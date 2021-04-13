@@ -38,6 +38,12 @@ export class App extends React.Component {
       case (nextQuestionId === 'init'):
         setTimeout(() => this.displayNextQuestion(nextQuestionId), 500);
         break;
+
+      case (nextQuestionId === 'contact'): //問い合わせのモーダルの表示
+        this.handleClickOpen();
+        break;
+
+
       case (/^https:*/.test(nextQuestionId)):
         const a = document.createElement('a');
         a.href = nextQuestionId;

@@ -1,9 +1,13 @@
-// import * as functions from "firebase-functions";
+import * as functions from 'firebase-functions'; 
+import * as admin from "firebase-admin"; 
+admin.initializeApp(); 
+const db = admin.firestore(); //これはよくやる技術。最初から定数で宣言することでメモリの確保をしている
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+const sendResponse = (response: functions.Response, statusCode: number, body: any) => {
+  
+}
+
+export const addDataset = functions.https.onRequest(async (req: any, res: any) => {
+
+})
+
