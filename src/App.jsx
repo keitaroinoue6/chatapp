@@ -53,7 +53,7 @@ export class App extends React.Component {
           chats: chats
         })
 
-        this.displayNextQuestion(nextQuestionId)
+        setTimeout(() => this.displayNextQuestion(nextQuestionId), 1000); //回答の遅延表示について
         break;
     }
   }
@@ -66,7 +66,7 @@ componentDidMount(){
   this.selectAnswer(initAnswer, this.state.currentId)
 }
 
-componentDidUpdate(){
+componentDidUpdate(){ // スクロールの設定
   const scrollArea = document.getElementById('scroll-area')
   if (scrollArea) {
     scrollArea.scrollTop = scrollArea.scrollHeight
