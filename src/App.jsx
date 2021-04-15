@@ -10,11 +10,7 @@ const App = () => {
   const [currentId, setCurrentId] = useState('init');
   const [dataset, setDataset] = useState({});
   const [open, setOpen] = useState(false); //初期値はboolean型なのでfalseを渡す
-  
-    this.selectAnswer = this.selectAnswer.bind(this)
-    this.handleClickOpen = this.handleClickOpen.bind(this)
-    this.handleClose = this.handleClose.bind(this)
-  
+
 
   const displayNextQuestion = (nextQuestionId, nextDatteset) => {
     addChats({
@@ -29,10 +25,6 @@ const App = () => {
 
    const selectAnswer = (selectedAnswer, nextQuestionId) => {
     switch (true) {
-      case (nextQuestionId === 'init'):
-        setTimeout(() => displayNextQuestion(nextQuestionId, dataset[nextQuestionId]), 500);
-        break;
-
       case (nextQuestionId === 'contact'): //問い合わせのモーダルの表示
         handleClickOpen();
         break;
@@ -57,7 +49,7 @@ const App = () => {
           type: 'answer'
         })
         
-        setTimeout(() => displayNextQuestion(nextQuestionId, dataset[nextQuestionId]), 1000); //回答の遅延表示について
+        setTimeout(() => displayNextQuestion(nextQuestionId, dataset[nextQuestionId ]), 1000); //回答の遅延表示について
         break;
     }
   }
@@ -76,36 +68,29 @@ const App = () => {
     setOpen(false)
   }, [setOpen]);
 
-  const initDataset = (dataset) => {
-    setOpen(true)
-  };
-
-
-
-  componentDidMount(){
+  useEffect ( () => {
     (async() => {
-      const dataset = this.state.dataset
+      const initDataset = {};
 
       await db.collection('questions').get().then(snapshots => {
         snapshots.forEach(doc => {
           const id = doc.id
           const data = doc.data()
-          dataset[id] = data
+          initDataset[id] = data
         })
       })
 
-      this.initDataset(dataset)
-      const initAnswer = "";
-      this.selectAnswer(initAnswer, this.state.currentId)
-    })()
-  }
+      setDataset(initDataset)
+      displayNextQuestion(currentId, initDataset[currentId])
+    })();
+  },[]);
 
-  componentDidUpdate(){ // スクロールの設定
-    const scrollArea = document.getElementById('scroll-area')
+  useEffect(() => {// スクロールの設定
+    const scrollArea = document.getElementById('scroll-area');
     if (scrollArea) {
-      scrollArea.scrollTop = scrollArea.scrollHeight
+      scrollArea.scrollTop = scrollArea.scrollHeight;
     }
-  }
+  });
   return (
     <section className="c-section">
       <div className="c-box">
@@ -115,9 +100,9 @@ const App = () => {
       </div>
     </section>
   );
-}
+  }
 
-export default App
+export default App;
 
 
 

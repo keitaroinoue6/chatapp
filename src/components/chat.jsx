@@ -23,8 +23,7 @@ const Chat = (props) => {
         {props.text}
       </div>
     </ListItem>
-  )
+  );
+};
 
-}
-
-export default Chat
+export default Chat;
